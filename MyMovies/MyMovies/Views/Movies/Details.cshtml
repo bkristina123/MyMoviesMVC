@@ -1,0 +1,62 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@model MyMovies.ViewModels.MovieViewModel
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Details";
+}
+
+
+<div class="detailsPageContainer">
+    <div class="detailsImage">
+        <img src="@Model.ImageUrl" alt="Movie Image" />
+    </div>
+    <div class="detailsTextContainer">
+        <div class="detailsTitle">
+            @Model.Title
+        </div>
+        <div class="detailsDescription">
+            @Model.Description
+        </div>
+        <div class="detailsCast">
+            Cast: @Model.Cast
+        </div>
+        <div class="detailsCast">
+            Date Created: @Model.DateCreated
+            <br />
+            Views: @Model.Views
+        </div>
+    </div>
+</div>
+<div class="commentContainer">
+    <h1>Comments</h1>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <form asp-controller="MovieComments" asp-action="AddComment" method="post">
+            <input id="movieId" name="movieId" value="@Model.Id" hidden />
+            <div class="form-group">
+                <textarea id="comment" name="comment" class="form-control bg-transparent text-white"> </textarea>
+            </div>
+            <button type="submit" class="btn btn-warning">Comment</button>
+        </form>
+    }
+
+    @foreach (var comment in Model.MovieComments)
+    {
+        <div class="commentWrap">
+            <div>@comment.Username :</div>
+            <div class="commentText">
+                @comment.Comment
+            </div>
+            <div style="font-size:small">
+                Date Created: @comment.DateCreated
+            </div>
+        </div>
+
+    }
+
+</div>

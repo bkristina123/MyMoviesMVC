@@ -1,0 +1,67 @@
+﻿@model MyMovies.ViewModels.MovieViewModel
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Create";
+}
+
+<style>
+
+    .form-container {
+        width: 35%;
+        margin: 0 auto;
+        margin-top: 2%;
+        background-color: #181818;
+        padding: 20px;
+        border-radius: 5px;
+        border-left: 2px solid #ffc107;
+        border-top: 2px solid #ffc107;
+    }
+
+    .createMovieHeader {
+        font-size: xx-large;
+        margin: 0 auto;
+        width: 35%;
+        margin-top: 4%;
+    }
+</style>
+
+
+<div class="createMovieHeader">
+    Create Movie
+</div>
+
+<div class="form-container">
+    <form asp-controller="Movies" asp-action="Create" method="post">
+        <div class="form-group">
+            <label asp-for="Title" class="control-label text-light">Title</label>
+            <input asp-for="Title" class="form-control bg-transparent text-light" />
+            <span asp-validation-for="Title" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Description" class="control-label text-light">Description</label>
+            <textarea asp-for="Description" class="form-control bg-transparent text-light"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="ImageUrl" class="control-label text-light">Image URL</label>
+            <input asp-for="ImageUrl" class="form-control bg-transparent text-light" />
+            <span asp-validation-for="ImageUrl" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <label asp-for="Cast" class="control-label text-light">Cast</label>
+            <input asp-for="Cast" class="form-control bg-transparent text-light" />
+            <span asp-validation-for="Cast" class="text-danger"></span>
+
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-warning" />
+        </div>
+    </form>
+</div>
+

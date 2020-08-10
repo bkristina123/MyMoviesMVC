@@ -1,0 +1,219 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{ 
+    var homeIsActive = ViewBag.Title == "Home" ? "active" : "";
+    var aboutUsIsActive = ViewBag.Title == "About Us" ? "active" : "";
+    var contactUsIsActive = ViewBag.Title == "Contact Us" ? "active" : "";
+    var createIsActive = ViewBag.Title == "Create" ? "active" : "";
+    var modifyIsActive = ViewBag.Title == "Modify Overview" ? "active" : "";
+    var signInIsActive = ViewBag.Title == "Sign In" ? "active" : "";
+
+
+        
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        @ViewBag.Title
+    </title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
+    <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link href="~/css/app.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            background-color: #020202;
+            color: #F5D10D;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+
+        .movieCard {
+            border-left: 2px solid #ffc107;
+            border-top: 2px solid #ffc107;
+            border-radius: 5px;
+            width: 25%;
+            height: 700px;
+            background-color: #181818;
+            margin: 3%;
+            padding: 1%;
+            padding-bottom: unset;
+        }
+
+        .imageContainer {
+            width: 100%;
+            height: 55%;
+        }
+
+        .movieImage {
+            width: 100%;
+            height: 100%;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .titleContainer {
+            color: white;
+            font-weight: 600;
+            font-size: x-large;
+            border-bottom: 1px solid #ffc107;
+            margin: 5%;
+        }
+
+        .descriptionContainer {
+            margin: 2%;
+            text-align: justify;
+            padding: 3%;
+            color: white;
+            font-size: medium;
+            height: 28%;
+        }
+
+        .buttonContainer {
+            display: flex;
+            width: 100%;
+            justify-content: flex-end;
+            margin: 1%;
+            color: #ffc107;
+        }
+
+    .detailsImage {
+        width: 30%;
+        height: 40%;
+    }
+
+    .detailsPageContainer {
+        background-color: #181818;
+        margin: auto;
+        width: 90%;
+        margin: auto;
+        margin-top: 3%;
+        border-radius: 7px;
+        display: flex;
+        color: white;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        border-radius: 7px;
+    }
+
+    .detailsTextContainer {
+        margin-left: 2%;
+    }
+
+    .detailsTitle {
+        font-size: 100px;
+        border-bottom: 5px solid #ffc107;
+        width: fit-content;
+    }
+
+    .detailsDescription {
+        margin-top: 2%;
+        width: 80%;
+    }
+
+    .detailsCast {
+        margin-top: 20px;
+    }
+
+    .commentContainer {
+     margin: 80px;
+     display:flex;
+     flex-flow:column;
+     flex-direction:column;
+    }
+
+    .commentWrap {
+     background-color: #181818;
+     border-radius: 5px;
+     padding: 7px;
+     width:fit-content;
+     margin-bottom: 5px;
+     margin-top: 30px;
+    }
+
+    .commentText{
+        color:whitesmoke;
+    }
+
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+        <a class="navbar-brand" asp-controller="Movies" asp-action="Overview">My Movies</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsupportedcontent" aria-controls="navbarsupportedcontent" aria-expanded="false" aria-label="toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsupportedcontent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item @homeIsActive">
+                    <a class="nav-link" asp-controller="Movies" asp-action="Overview">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item @aboutUsIsActive">
+                    <a class="nav-link " asp-controller="Info" asp-action="AboutUs">About us</a>
+                </li>
+                <li class="nav-item @contactUsIsActive">
+                    <a class="nav-link " asp-controller="Info" asp-action="ContactUs">Contact us</a>
+                </li>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (Convert.ToBoolean(User.FindFirst("IsAdmin").Value))
+                    {
+                        <li class="nav-item @createIsActive">
+                            <a class="nav-link " asp-controller="Movies" asp-action="Create">Create Movie</a>
+                        </li>
+                        <li class="nav-item" @modifyIsActive>
+                            <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify Movies</a>
+                        </li>
+                    }
+
+                    <li class="nav-item">
+                        <a class="nav-link">@User.Identity.Name</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item" @signInIsActive>
+                        <a class="nav-link" asp-controller="Auth" asp-action="SignIn">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Auth" asp-action="SignUp">Register</a>
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <form class="form-inline my-2 my-lg-0" method="get" asp-controller="Movies" asp-action="Overview">
+            <div class="form-group">
+                <div class="input-group">
+                    <input name="Title" value="" id="title" class="form-control text-dark" placeholder="Search" />
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-outline-dark" value="Search">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </form>
+    </nav>
+    @RenderBody()
+</body>
+</html>

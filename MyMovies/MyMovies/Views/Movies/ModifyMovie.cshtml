@@ -1,0 +1,48 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@model MyMovies.ViewModels.MovieViewModel
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Modify Movie";
+}
+
+
+
+<div class="createMovieHeader">
+  Editing @Model.Title
+</div>
+    <div class="form-container">
+        <form asp-controller="Movies" asp-action="ModifyMovie" method="post">
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control bg-transparent text-light" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control bg-transparent text-light" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cast" class="control-label"></label>
+                <input asp-for="Cast" class="form-control bg-transparent text-light" />
+                <span asp-validation-for="Cast" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control bg-transparent text-light" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-warning" />
+            </div>
+            <div>
+                <a asp-controller="Movies" asp-action="ModifyOverview" class="text-warning">Back to List</a>
+            </div>
+        </form>
+    </div>
+
