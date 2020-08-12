@@ -1,39 +1,35 @@
-﻿@model List<MyMovies.ViewModels.MovieViewModel>
+﻿@model MyMovies.ViewModels.MovieOverviewDataModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
 
 @{
     Layout = "_Layout";
-    ViewBag.Title = "My Movies";
+    ViewBag.Title = "Home";
 }
 
-<style>
-    .contentContainer {
-        width: 80%;
-        min-height: 900px;
-        display: flex;
-        flex-wrap: wrap;
-        margin-top: 2%;
-    }
-</style>
-
-
-<div class="contentContainer">
-    @foreach (var item in Model)
-    {
-        <div class="movieCard">
-            <div class="imageContainer">
-                <img src="@item.ImageUrl" class="movieImage" alt="Movie Image" />
+<div class="bodyContainer">
+    <div class="contentContainer">
+        @foreach (var item in Model.Movies)
+        {
+            <div class="movieCard">
+                <div class="imageContainer">
+                    <img src="@item.ImageUrl" class="movieImage" alt="Movie Image" />
+                </div>
+                <div class="titleContainer">
+                    @item.Title
+                </div>
+                <div class="descriptionContainer">
+                    @item.Description
+                </div>
+                <div class="buttonContainer">
+                    <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-warning">See more</a>
+                </div>
             </div>
-            <div class="titleContainer">
-                @item.Title
-            </div>
-            <div class="descriptionContainer">
-                @item.Description
-            </div>
-            <div class="buttonContainer">
-                <a asp-controller="Movies" asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-warning">See more</a>
-            </div>
-        </div>
-    }
+        }
+    </div>
+    <div class="sideBarContainer">
+        <partial name="SidebarPartial" for="SidebarData">
+    </div>
+    
 </div>
+

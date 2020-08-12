@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MyMovies.Helpers;
-using MyMovies.Models;
 using MyMovies.Services.Interfaces;
 using MyMovies.ViewModels;
 using System.Linq;
@@ -21,11 +20,22 @@ namespace MyMovies.Controllers
         [AllowAnonymous]
         public IActionResult Overview(string title)
         {
+  
+
             var viewMovies = moviesService.GetByTitle(title)
                 .Select(x => x.ConvertToMovieViewModel())
                 .ToList();
 
-            return View(viewMovies);
+            var sidebarData = moviesService.GetSidebarData();
+
+            var viewData = new MovieOverviewDataModel
+            {
+                Movies = viewMovies,
+                SidebarData = sidebarData
+            };
+
+
+            return View(viewData);
 
         }
 
@@ -34,6 +44,9 @@ namespace MyMovies.Controllers
         {
             var movieDetails = moviesService.GetMovieDetails(id)
                 .ConvertToMovieViewModel();
+
+            var sidebarData = moviesService.GetSidebarData();
+            movieDetails.SidebarData = sidebarData;
 
             return View(movieDetails);
         }

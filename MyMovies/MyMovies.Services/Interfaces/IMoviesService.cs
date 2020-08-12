@@ -1,4 +1,5 @@
 ﻿using MyMovies.Models;
+using MyMovies.Services.DtoModels;
 using System.Collections.Generic;
 
 namespace MyMovies.Services.Interfaces
@@ -12,6 +13,7 @@ namespace MyMovies.Services.Interfaces
         Movie GetMovieDetails(int id);
         void Delete(int id);
         void Update(Movie movie);
+        SidebarData GetSidebarData();
     }
 }
 

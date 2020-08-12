@@ -1,4 +1,5 @@
 ﻿using MyMovies.Data;
+using MyMovies.Services.DtoModels;
 using System;
 using System.Collections.Generic;
 
@@ -21,5 +22,7 @@ namespace MyMovies.ViewModels
         public int Views { get; set; }
 
         public List<MovieCommentViewModel> MovieComments{ get; set; }
+
+        public SidebarData SidebarData { get; set; }
     }
 }

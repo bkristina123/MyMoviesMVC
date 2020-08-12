@@ -1,8 +1,10 @@
 ﻿using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
+using MyMovies.Services.DtoModels;
 using MyMovies.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MyMovies.Services
 {
@@ -56,5 +58,41 @@ namespace MyMovies.Services
             moviesRepo.Update(movie);
         }
 
+        public SidebarData GetSidebarData()
+        {
+            var movieCount = 3;
+            var movies = moviesRepo.GetAll();
+
+            var topMovies = movies
+                .OrderByDescending(x => x.Views)
+                .Take(movieCount)
+                .Select(x => new SidebarMovie() {
+                    Id = x.Id,
+                    Title = x.Title,
+                    DateCreated = x.DateCreated.Value,
+                    Views = x.Views
+                })
+                .ToList();
+
+            var recentMovies = movies
+                .OrderByDescending(x => x.DateCreated)
+                .Take(movieCount)
+                .Select(x => new SidebarMovie()
+                {
+                    Id = x.Id,
+                    Title = x.Title,
+                    DateCreated = x.DateCreated.Value,
+                    Views = x.Views
+                })
+                .ToList();
+
+            var sidebarData = new SidebarData()
+            {
+                TopMovies = topMovies,
+                RecentMovies = recentMovies
+            };
+
+            return sidebarData;
+        }
     }
 }

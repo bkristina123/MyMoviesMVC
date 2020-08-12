@@ -21,7 +21,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap" rel="stylesheet">
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="~/css/app.css" rel="stylesheet" />
     <link href="~/css/site.css" rel="stylesheet" />
 
     <style>
@@ -39,6 +38,10 @@
             font-family: 'Open Sans', sans-serif;
         }
 
+        .bodyContainer {
+        display:inline-flex;
+        width: 100%;
+        }
 
         .movieCard {
             border-left: 2px solid #ffc107;
@@ -96,13 +99,12 @@
 
     .detailsPageContainer {
         background-color: #181818;
-        margin: auto;
-        width: 90%;
-        margin: auto;
-        margin-top: 3%;
+        width: 70%;
+        margin: 3%;
         border-radius: 7px;
         display: flex;
         color: white;
+        height: 100%;
     }
 
     img {
@@ -150,6 +152,51 @@
         color:whitesmoke;
     }
 
+     .contentContainer {
+        width: 80%;
+        min-height: 900px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 2%;
+    }
+
+    .sideBarContainer {
+        width: 18%;
+        background-color: yellow;
+        height: 700px;
+        margin-top: 4.5%;
+        margin-right: 2%;
+        border-radius: 5px;
+        background-color: #181818;
+        padding: 1%;
+        padding-bottom: unset;
+        display:flex;
+        flex-direction:column;
+    }
+
+    .sideBarText{
+        color: #ffc107;
+        font-weight: 800;
+        margin: 5%;
+        font-size:medium;
+    }
+
+    .topMoviesShow {
+        height: 40%;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .movie {
+        border-bottom: 1px solid #ffc107;
+        padding: 5px;
+        margin: 1px;
+        width: 100%;
+        color:white;
+    }
+
     </style>
 </head>
 <body>
@@ -174,9 +221,6 @@
                 {
                     if (Convert.ToBoolean(User.FindFirst("IsAdmin").Value))
                     {
-                        <li class="nav-item @createIsActive">
-                            <a class="nav-link " asp-controller="Movies" asp-action="Create">Create Movie</a>
-                        </li>
                         <li class="nav-item" @modifyIsActive>
                             <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify Movies</a>
                         </li>

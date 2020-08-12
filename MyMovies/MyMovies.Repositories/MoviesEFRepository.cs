@@ -2,10 +2,8 @@
 using MyMovies.Data;
 using MyMovies.Models;
 using MyMovies.Repositories.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace MyMovies.Repositories
 {
@@ -26,12 +24,10 @@ namespace MyMovies.Repositories
 
         public void Delete(int id)
         {
-            var movie = new Movie
-            {
-                Id = id
-            };
+            var movie = context.Movies.FirstOrDefault(x => x.Id.Equals(id));
 
             context.Movies.Remove(movie);
+
             context.SaveChanges();
 
         }
@@ -51,7 +47,10 @@ namespace MyMovies.Repositories
 
         public IEnumerable<Movie> GetByTitle(string title = null)
         {
-            return context.Movies.Where(x => string.IsNullOrEmpty(title) || x.Title.Contains(title)).ToList();
+            return context.Movies.Where(x =>
+            string.IsNullOrEmpty(title) ||
+            x.Title.Contains(title))
+                .ToList();
         }
 
         public void Update(Movie movie)

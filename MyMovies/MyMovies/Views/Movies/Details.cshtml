@@ -9,28 +9,33 @@
     ViewBag.Title = "Details";
 }
 
+    <div class="bodyContainer">
+        <div class="detailsPageContainer">
+            <div class="detailsImage">
+                <img src="@Model.ImageUrl" alt="Movie Image" />
+            </div>
+            <div class="detailsTextContainer">
+                <div class="detailsTitle">
+                    @Model.Title
+                </div>
+                <div class="detailsDescription">
+                    @Model.Description
+                </div>
+                <div class="detailsCast">
+                    Cast: @Model.Cast
+                </div>
+                <div class="detailsCast">
+                    Date Created: @Model.DateCreated
+                    <br />
+                    Views: @Model.Views
+                </div>
+            </div>
+        </div>
+        <div class="sideBarContainer">
+            <partial name="SidebarPartial" for="@Model.SidebarData">
+        </div>
+    </div>
 
-<div class="detailsPageContainer">
-    <div class="detailsImage">
-        <img src="@Model.ImageUrl" alt="Movie Image" />
-    </div>
-    <div class="detailsTextContainer">
-        <div class="detailsTitle">
-            @Model.Title
-        </div>
-        <div class="detailsDescription">
-            @Model.Description
-        </div>
-        <div class="detailsCast">
-            Cast: @Model.Cast
-        </div>
-        <div class="detailsCast">
-            Date Created: @Model.DateCreated
-            <br />
-            Views: @Model.Views
-        </div>
-    </div>
-</div>
 <div class="commentContainer">
     <h1>Comments</h1>
 

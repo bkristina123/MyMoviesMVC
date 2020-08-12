@@ -1,0 +1,29 @@
+﻿@model MyMovies.Services.DtoModels.SidebarData
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+    <div class="sideBarText">
+        Top Movies
+    </div>
+    <div class="topMoviesShow">
+        @foreach (var movie in Model.TopMovies)
+        {
+            <div class="movie">
+                <div>Title: @movie.Title</div>
+                <div>Views: @movie.Views </div>
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><div class="btn btn-outline-warning btn-sm">See More</div></a>
+            </div>
+        }
+    </div>
+    <div class="sideBarText">
+        Recent Movies
+    </div>
+    <div class="topMoviesShow">
+        @foreach (var movie in Model.RecentMovies)
+        {
+            <div class="movie">
+                <div>Title: @movie.Title</div>
+                <div>Created: @movie.DateCreated </div>
+                <a asp-controller="Movies" asp-action="Details" asp-route-id="@movie.Id"><div class="btn btn-outline-warning btn-sm">See More</div></a>
+            </div>
+        }
+    </div>
