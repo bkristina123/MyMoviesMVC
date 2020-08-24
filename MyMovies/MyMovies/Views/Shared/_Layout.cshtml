@@ -5,10 +5,8 @@
     var aboutUsIsActive = ViewBag.Title == "About Us" ? "active" : "";
     var contactUsIsActive = ViewBag.Title == "Contact Us" ? "active" : "";
     var createIsActive = ViewBag.Title == "Create" ? "active" : "";
-    var modifyIsActive = ViewBag.Title == "Modify Overview" ? "active" : "";
+    var modifyIsActive = ViewBag.Title == "Modify Movies" ? "active" : "";
     var signInIsActive = ViewBag.Title == "Sign In" ? "active" : "";
-
-
         
 }
 
@@ -224,6 +222,10 @@
                         <li class="nav-item" @modifyIsActive>
                             <a class="nav-link" asp-controller="Movies" asp-action="ModifyOverview">Modify Movies</a>
                         </li>
+                        <li class="nav-item" @modifyIsActive>
+                            <a class="nav-link" asp-controller="Users" asp-action="ModifyUsersOverview">Modify Users</a>
+                        </li>
+
                     }
 
                     <li class="nav-item">

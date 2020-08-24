@@ -1,0 +1,45 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+
+@model List<MyMovies.ViewModels.UserViewModel>
+
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Modify Users";
+}
+
+
+<div class="container">
+    <h2 style="margin:50px">Modify Users</h2>
+    <table class="table">
+        @foreach (var user in Model)
+        {
+        <tr>
+            <td class="text-warning">@user.Username</td>
+            @if (user.IsAdmin)
+            {
+                <td class="text-warning">Admin</td>
+            }
+            else
+            {
+                <td class="text-warning">User</td>
+            }
+
+            <td>
+                <a class="btn btn-warning" asp-controller="Users" asp-action="EditUser" asp-route-id="@user.Id">
+                    <i class="fa fa-edit"></i>
+                </a>
+            </td>
+            <td>
+                <a class="btn btn-warning" asp-controller="Users" asp-action="DeleteUser" asp-route-id="@user.Id" onclick="return confirm('Are you sure you want to delete this user?')">
+                    <i class="fa fa-trash"></i>
+                </a>
+            </td>
+        </tr>
+        }
+    </table>
+
+    <a asp-controller="Auth" asp-action="SignUp" class="btn btn-warning">Create User</a>
+
+</div>

@@ -26,9 +26,6 @@ namespace MyMovies.Helpers
             };
         }
 
-
-
-
         public static Movie ConvertToMovieEntity(this MovieViewModel movie)
         {
             return new Movie
@@ -51,6 +48,26 @@ namespace MyMovies.Helpers
                 Comment = movieComment.Comment,
                 DateCreated = movieComment.DateCreated,
                 Username = movieComment.User.Username
+            };
+        }
+
+        public static UserViewModel ConvertToUserViewModel(this User user)
+        {
+            return new UserViewModel
+            {
+                Id = user.Id,
+                Username = user.Username,
+                IsAdmin = user.IsAdmin
+            };
+        }
+
+        public static User ConvertToUserEntity(this UserViewModel user)
+        {
+            return new User
+            {
+                Id = user.Id,
+                Username = user.Username,
+                IsAdmin = user.IsAdmin
             };
         }
     }

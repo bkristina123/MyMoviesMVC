@@ -55,6 +55,7 @@ namespace MyMovies.Services
 
         public void Update(Movie movie)
         {
+            movie.DateCreated = DateTime.Now;
             moviesRepo.Update(movie);
         }
 
@@ -69,7 +70,7 @@ namespace MyMovies.Services
                 .Select(x => new SidebarMovie() {
                     Id = x.Id,
                     Title = x.Title,
-                    DateCreated = x.DateCreated.Value,
+                    DateCreated = x.DateCreated,
                     Views = x.Views
                 })
                 .ToList();
@@ -81,7 +82,7 @@ namespace MyMovies.Services
                 {
                     Id = x.Id,
                     Title = x.Title,
-                    DateCreated = x.DateCreated.Value,
+                    DateCreated = x.DateCreated,
                     Views = x.Views
                 })
                 .ToList();

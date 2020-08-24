@@ -1,12 +1,10 @@
 ﻿using MyMovies.Data;
 using System.Collections.Generic;
 
-namespace MyMovies.Repositories.Interfaces
+namespace MyMovies.Services.Interfaces
 {
-    public interface IUserRepository
+    public interface IUsersService
     {
-        User GetByUserName(string username);
-        void Add(User user);
         IEnumerable<User> GetAll();
         void Delete(int id);
         User GetById(int id);
