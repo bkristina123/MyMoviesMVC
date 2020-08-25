@@ -36,7 +36,7 @@ namespace MyMovies
             services.AddDbContext<MyMoviesDbContext>(options => 
             options
             .UseLazyLoadingProxies()
-            .UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog = MyMovies; Integrated Security = true"
+            .UseSqlServer(Configuration.GetConnectionString("MyMovies")
             ));
 
             services.AddAuthentication(options => {

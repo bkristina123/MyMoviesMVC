@@ -38,10 +38,19 @@ namespace MyMovies.Controllers
         [HttpPost]
         public IActionResult EditUser(UserViewModel user)
         {
-            if(ModelState.IsValid)
+
+            if (ModelState.IsValid)
             {
-                usersService.Update(user.ConvertToUserEntity());
-                return RedirectToAction("ModifyUsersOverview");
+                var response = usersService.Update(user.ConvertToUserEntity());
+
+                if (response.IsSuccesful)
+                {
+                    return RedirectToAction("ModifyUsersOverview");
+
+                } else
+                {
+                    ModelState.AddModelError("", response.Message);
+                }
             }
 
             return View(user);

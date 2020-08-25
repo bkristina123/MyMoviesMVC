@@ -1,4 +1,5 @@
 ﻿using MyMovies.Data;
+using MyMovies.Services.DtoModels;
 using System.Collections.Generic;
 
 namespace MyMovies.Services.Interfaces
@@ -8,6 +9,6 @@ namespace MyMovies.Services.Interfaces
         IEnumerable<User> GetAll();
         void Delete(int id);
         User GetById(int id);
-        void Update(User user);
+        ModifyUsersResponse Update(User user);
     }
 }

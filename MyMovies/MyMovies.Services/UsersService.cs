@@ -1,5 +1,6 @@
 ﻿using MyMovies.Data;
 using MyMovies.Repositories.Interfaces;
+using MyMovies.Services.DtoModels;
 using MyMovies.Services.Interfaces;
 using System.Collections.Generic;
 
@@ -29,13 +30,29 @@ namespace MyMovies.Services
             return userRepository.GetById(id);
         }
 
-        public void Update(User user)
+        public ModifyUsersResponse Update(User user)
         {
-            var dbUser = userRepository.GetById(user.Id);
-            dbUser.Username = user.Username;
-            dbUser.IsAdmin = user.IsAdmin;
+            var response = new ModifyUsersResponse();
 
-            userRepository.Update(dbUser);
+            var currentUser = userRepository.GetByUserName(user.Username);
+
+            if(currentUser == null || currentUser.Id == user.Id)
+            {
+                var dbUser = userRepository.GetById(user.Id);
+                dbUser.Username = user.Username;
+                dbUser.IsAdmin = user.IsAdmin;
+
+                response.IsSuccesful = true;
+
+                userRepository.Update(dbUser);
+
+            } else
+            {
+                response.IsSuccesful = false;
+                response.Message = "Username already exists";
+            }
+
+            return response;
         }
     }
 }
