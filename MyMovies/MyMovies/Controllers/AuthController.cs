@@ -29,22 +29,23 @@ namespace MyMovies.Controllers
             {
                 var isSignedIn = await authService.SignInAsync(signInModel.Username, signInModel.Password, HttpContext);
 
-                if(isSignedIn)
+                if (isSignedIn)
                 {
-                    if(!String.IsNullOrEmpty(returnUrl))
+                    if (!String.IsNullOrEmpty(returnUrl))
                     {
                         return Redirect(returnUrl);
-                    } else
+                    }
+                    else
                     {
                         return RedirectToAction("Overview", "Movies");
                     }
 
-                } else
+                }
+                else
                 {
                     ModelState.AddModelError(string.Empty, "Username or password is incorrect");
                     return View(signInModel);
                 }
-
             }
 
             return View(signInModel);
@@ -82,7 +83,6 @@ namespace MyMovies.Controllers
             await authService.SignOutAsync(HttpContext);
             return RedirectToAction("Overview", "Movies");
         }
-
 
         public IActionResult AccessDenied()
         {
