@@ -7,28 +7,6 @@
     ViewBag.Title = "Create";
 }
 
-@*<style>
-
-    .form-container {
-        width: 35%;
-        margin: 0 auto;
-        margin-top: 2%;
-        background-color: #181818;
-        padding: 20px;
-        border-radius: 5px;
-        border-left: 2px solid #ffc107;
-        border-top: 2px solid #ffc107;
-    }
-
-    .createMovieHeader {
-        font-size: xx-large;
-        margin: 0 auto;
-        width: 35%;
-        margin-top: 4%;
-    }
-</style>*@
-
-
 <div class="createMovieHeader">
     Create Movie
 </div>
@@ -65,3 +43,6 @@
     </form>
 </div>
 
+@section Scripts {
+<partial name="_ValidationScriptsPartial"/>
+    }

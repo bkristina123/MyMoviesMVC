@@ -21,7 +21,6 @@ namespace MyMovies.Controllers
         public IActionResult Overview(string title)
         {
   
-
             var viewMovies = moviesService.GetByTitle(title)
                 .Select(x => x.ConvertToMovieViewModel())
                 .ToList();
